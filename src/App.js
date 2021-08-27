@@ -1,13 +1,35 @@
+import {useState} from "react"
 import './App.css';
 
 function App() {
+
+  const [color, setColor] = useState("#F397D6");
+
+  const COLOR = [
+    "#B8B8F3",
+    "#D7B8F3",
+    "#F397D6",
+    "#F42272",
+    "#232E21"
+  ]
+
+  const changeColor = () => {
+    let randNum = Math.floor(Math.random() * COLOR.length);
+    console.log(randNum)
+    let color = COLOR[randNum];
+
+    localStorage.setItem("color", color);
+    setColor(color);
+  }
+
+
   return (
-    <div className="container">
+    <div className="container" style={{ backgroundColor: color }}>
       <div className="main">
         <div className="bg-color">
-          <h1>Background Color: #FFFFFF</h1>
+          <h1>Background Color: {color}</h1>
         </div>
-        <div className="button">
+        <div className="button" onClick={()=>changeColor()}>
           Click me
         </div>
       </div>
@@ -16,18 +38,3 @@ function App() {
 }
 
 export default App;
-
-
-// Task 1: Create a state variable 'color'
-// That color you will show on the frontend
-
-// Task 2: Create an array of colors (HEX-codes)
-// use coolors.co website
-
-// Task 3: Create a function that fires off upon onClick
-// onClick is on the button
-// select a random color of the array of collars
-// Use (Math.random) for the keys;
-// and set the variable color with the value of that random color
-
-
